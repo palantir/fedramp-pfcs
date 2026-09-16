@@ -1,0 +1,16 @@
+version: 2.1
+
+jobs:
+  verify:
+    docker:
+      - image: cimg/python:3.12
+    steps:
+      - checkout
+      - run:
+          name: Run validation and tests
+          command: make verify
+
+workflows:
+  verify:
+    jobs:
+      - verify
