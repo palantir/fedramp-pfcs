@@ -48,4 +48,4 @@ make test          Run the test suite
 make verify        Validate JSON, check README.md, and run tests
 ```
 
-The GitHub branch-protection check should require the `Schema and README` job.
+The GitHub branch-protection check should require the `ci/circleci: verify` job.
