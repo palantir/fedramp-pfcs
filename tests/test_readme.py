@@ -14,4 +14,4 @@ def test_readme_matches_template_and_json() -> None:
             tofile="README.md (generated)",
         )
     )
-    assert current == expected, f"README.md is out of date. Run `make readme`.\n{diff}"
+    assert current == expected, f"README.md is out of date. Run `./godelw generate`.\n{diff}"

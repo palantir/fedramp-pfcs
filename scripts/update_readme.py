@@ -34,7 +34,7 @@ def main() -> int:
     current = README_PATH.read_text(encoding="utf-8") if README_PATH.exists() else ""
 
     if check and current != expected:
-        print("README.md is out of date. Run `make readme`.")
+        print("README.md is out of date. Run `./godelw generate`.")
         print(
             "".join(
                 difflib.unified_diff(
@@ -47,7 +47,7 @@ def main() -> int:
         )
         return 1
 
-    if check:
+    if current == expected:
         print("README.md is current.")
     else:
         README_PATH.write_text(expected, encoding="utf-8")

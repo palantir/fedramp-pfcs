@@ -3,12 +3,15 @@ version: 2.1
 jobs:
   verify:
     docker:
-      - image: cimg/python:3.12
+      - image: cimg/go:1.26.4
     steps:
       - checkout
       - run:
-          name: Run validation and tests
-          command: make verify
+          name: Install Python virtual environment support
+          command: sudo apt-get update && sudo apt-get install -y python3-venv
+      - run:
+          name: ./godelw verify
+          command: ./godelw verify --apply=false
 
 workflows:
   verify:
