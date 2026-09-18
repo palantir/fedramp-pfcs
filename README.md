@@ -1,6 +1,6 @@
 # FedRAMP PFCS
 
-See [PFCS public information](package-information/pfcs-public-information.md) for the generated service information.
+See [PFCS public information](package-information/pfcs-package.md) for the generated service information.
 
 This README is maintained by hand.
 
@@ -9,8 +9,8 @@ This README is maintained by hand.
 Every `data/*.json` file is rendered with `TEMPLATE.md` into
 `package-information/<same-name>.md`. No configuration file is needed.
 
-For example, `data/pfcs-public-information.json` produces
-`package-information/pfcs-public-information.md`.
+For example, `data/pfcs-package.json` produces
+`package-information/pfcs-package.md`.
 
 Run commands from the repository root. Add another JSON file to generate
 another page. If you remove or rename a JSON file, remove its old Markdown
@@ -18,9 +18,9 @@ page too; generation does not delete files.
 
 ## Source files
 
-- `data/pfcs-public-information.json` is the authoritative public-information data.
+- `data/pfcs-package.json` is the authoritative public-information data.
 - `TEMPLATE.md` owns the public-information page Markdown and Go template expressions.
-- `package-information/pfcs-public-information.md` is generated. Do not edit it directly.
+- `package-information/pfcs-package.md` is generated. Do not edit it directly.
 - `generate.go` renders the template with the JSON data.
 - `validate.go` validates the JSON against `FedRAMP/schemas@main`.
 - `generate_test.go` and `validate_test.go` test public-information page synchronization and schema validation.
@@ -73,11 +73,11 @@ Godel's generate plugin runs `go run .` through the directive in `generate.go`.
 The JSON and Go template remain the source of the public-information page.
 Tests run natively through Godel. Test caching is disabled so each run checks
 the current remote schemas.
-Generation renders the expected content in memory and leaves package-information/pfcs-public-information.md untouched
+Generation renders the expected content in memory and leaves package-information/pfcs-package.md untouched
 when it already matches.
 
 CircleCI runs `./godelw verify --apply=false` for generation verification and all tests.
-If generation changes `package-information/pfcs-public-information.md`, Godel fails and includes `generate --verify` in
+If generation changes `package-information/pfcs-package.md`, Godel fails and includes `generate --verify` in
 its failed-task summary. Nit recognizes this existing Godel task and, on a PR
 with the `🤖 fix nits` label, runs `./godelw generate` and pushes the repaired public-information page.
 This requires the OSS Nit app to have repository access and its deployed version
@@ -91,5 +91,5 @@ Godel verifies generation by running it and comparing outputs. Even with
 `--apply=false`, a stale public-information page is rewritten locally and verification fails.
 Use `go run . --check` for a check that does not modify files.
 
-The Go suite validates the JSON against its schema and checks that package-information/pfcs-public-information.md
+The Go suite validates the JSON against its schema and checks that package-information/pfcs-package.md
 matches the JSON and template.
