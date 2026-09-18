@@ -1,3 +1,45 @@
-# fedramp-pfcs
+# Palantir FedRAMP Package Information
 
-Branch protection test.
+## Package Information
+
+TODO: Add package JSON files to `data/`, generate their Markdown pages, and link them here.
+
+---
+
+## Maintainer Information
+
+Every `data/<name>.json` file is rendered with `TEMPLATE.md` into `package-information/<name>.md`.
+
+### Updating Information
+
+To update the information, edit the JSON in the data directory, the template, or both, then regenerate the markdowns:
+
+```bash
+./godelw generate
+```
+
+Run all validation and tests:
+
+```bash
+./godelw verify --apply=false
+```
+
+Optionally, you can add the `fix-nits` label to your PR and the nitbot will render and push the updated markdowns.
+
+### Commands
+
+```bash
+./godelw generate              # Regenerate all package-information pages
+./godelw verify --apply=false  # Verify generated output and run tests
+./godelw test                  # Run the Go tests
+go run . --check               # Read-only public-information page check
+go run . --validate            # Validate JSON
+```
+
+### Source files
+
+- `TEMPLATE.md` is the human-readable Markdown template for the data.
+- `package-information/*.md` is generated. Do not edit it directly.
+- `generate.go` renders the template with the JSON data.
+- `validate.go` validates the JSON against `FedRAMP/schemas@main`.
+- `generate_test.go` and `validate_test.go` test public-information markdown synchronization and schema validation.
