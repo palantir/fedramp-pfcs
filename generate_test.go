@@ -13,6 +13,48 @@ func TestReadmeMatchesTemplateAndJSON(t *testing.T) {
 	}
 }
 
+func TestNoData(t *testing.T) {
+	root, err := os.Getwd()
+	if err != nil {
+		t.Fatal(err)
+	}
+	if err := os.Chdir(t.TempDir()); err != nil {
+		t.Fatal(err)
+	}
+	t.Cleanup(func() {
+		if err := os.Chdir(root); err != nil {
+			t.Error(err)
+		}
+	})
+	for _, state := range []string{"missing", "empty"} {
+		t.Run(state, func(t *testing.T) {
+			if state == "empty" {
+				if err := os.Mkdir("data", 0755); err != nil {
+					t.Fatal(err)
+				}
+			}
+			for _, mode := range []struct{ check, validate bool }{
+				{false, false}, {true, false}, {false, true},
+			} {
+				if err := run(mode.check, mode.validate); err != nil {
+					t.Fatal(err)
+				}
+			}
+			if _, err := os.Stat("package-information"); !os.IsNotExist(err) {
+				t.Fatal("no-data run created output directory")
+			}
+		})
+	}
+	if err := os.WriteFile("data/invalid.json", []byte("{"), 0644); err != nil {
+		t.Fatal(err)
+	}
+	for _, validate := range []bool{false, true} {
+		if err := run(true, validate); err == nil {
+			t.Fatal("existing invalid JSON should fail verification")
+		}
+	}
+}
+
 func TestReadmeCheckAndUpdate(t *testing.T) {
 	root, err := os.Getwd()
 	if err != nil {

@@ -12,6 +12,9 @@ func TestSchemaValidation(t *testing.T) {
 	if err != nil {
 		t.Fatal(err)
 	}
+	if len(paths) == 0 {
+		return
+	}
 	schema, err := loadSchema()
 	if err != nil {
 		t.Fatal(err)

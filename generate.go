@@ -18,11 +18,7 @@ import (
 var templatePath = "TEMPLATE.md"
 
 func dataFiles() ([]string, error) {
-	paths, err := filepath.Glob("data/*.json")
-	if err == nil && len(paths) == 0 {
-		return nil, fmt.Errorf("no JSON files found in data/")
-	}
-	return paths, err
+	return filepath.Glob("data/*.json")
 }
 
 func outputPath(path string) string {

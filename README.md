@@ -2,8 +2,7 @@
 
 ## Package Information
 
-- [PFCS](package-information/pfcs-package.md)
-  - [FedRAMP JSON](data/pfcs-package.json)
+TODO: Add package JSON files to `data/`, generate their Markdown pages, and link them here.
 
 ---
 
