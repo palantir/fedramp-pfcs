@@ -11,7 +11,7 @@
     "sourceOfUpdate": "validation-preview"
   },
   "serviceIdentification": {
-    "providerName": "Palantir Technologies Inc.TEST",
+    "providerName": "Palantir Technologies Inc.",
     "ueiNumber": "FSY4LVSBGWB7",
     "serviceName": "Palantir Federal Cloud Service",
     "serviceAcronym": "PFCS",
@@ -22,17 +22,24 @@
     "logo": "https://raw.githubusercontent.com/palantir/conjure/master/docs/media/palantir-logo.svg"
   },
   "serviceProperties": {
-    "serviceType": ["PaaS", "SaaS"],
+    "serviceType": [
+      "PaaS",
+      "SaaS"
+    ],
     "deploymentModel": "Public Cloud",
     "trustCenter": {
-      "repositoryType": ["Trust Center"],
+      "repositoryType": [
+        "Trust Center"
+      ],
       "url": "https://pfcsdocs.palantirgov.com/",
       "repositoryDescription": "PFCS Documentation Repository. Access is restricted to verified federal government accounts and to FedRAMP Recognized independent assessment services supporting an assessment of this offering.",
       "authenticationRequired": true,
       "accessRequestInstructions": "Federal agencies and FedRAMP Recognized independent assessment services request access by contacting FedRAMP-ISSO@palantir.com with the requesting organization, the point of contact to be provisioned, and the authorization or assessment activity the access supports. Access persists for the duration of that activity; parties do not submit a new request for each document."
     },
     "secureConfigurationGuidance": {
-      "repositoryType": ["Secure Configuration Guidance"],
+      "repositoryType": [
+        "Secure Configuration Guidance"
+      ],
       "url": "https://www.palantir.com/docs",
       "repositoryDescription": "Recommended secure configuration guidance for PFCS, covering secure access, configuration, operation and decommissioning of top-level administrative accounts and the security settings operable only by those accounts.",
       "authenticationRequired": false
